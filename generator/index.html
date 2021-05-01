@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cellurar Automaton Signs</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            background: #f0f0f0;
+        }
+        .render-svg {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 70px;
+            height: 70px;
+            background: #FEDB25;
+            border-radius: 50%;
+            padding: 30px;
+        }
+        .render-svg path {
+            stroke: #f0f0f0;
+        }
+        #defaultCanvas {
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid #000;
+            /* box-shadow: 0px 0px 33px -8px rgba(0,0,0,0.5); */
+        }
+    </style>
+</head>
+<body>
+    <!-- <svg class="render-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" viewBox="0 0 500 500"><defs></defs><g transform="scale(1,1) translate(100,100)"><g></g><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 0 L 0 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 0 L 0 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 0 L 300 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 0 L 200 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 100 L 100 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 100 L 0 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 100 L 100 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 100 L 300 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 200 L 100 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 200 L 100 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 200 L 100 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 200 L 300 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 300 L 0 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 300 L 200 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 300 L 300 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 300 L 200 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 0 L 0 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 0 L 0 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 0 L 200 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 0 L 300 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 100 L 100 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 100 L 0 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 100 L 100 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 100 L 300 0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 200 L 100 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 200 L 200 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 200 L 300 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 200 L 300 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 0 300 L 100 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 300 L 0 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 300 L 100 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 300 L 200 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="30"></path></g></svg> -->
+    <svg class="render-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="501" height="501" viewBox="0 0 501 501"><defs></defs><g transform="scale(1,1)"><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 100 L 100 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 100 L 200 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 100 L 300 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 400 100 L 300 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 200 L 100 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 200 L 200 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 200 L 400 200" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 400 200 L 400 100" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 300 L 100 400" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 300 L 300 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 300 L 300 400" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 400 300 L 300 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 100 400 L 100 300" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 200 400 L 100 400" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 300 400 L 400 400" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path><path fill="none" stroke="#000000" paint-order="fill stroke markers" d=" M 400 400 L 300 400" stroke-linecap="round" stroke-miterlimit="10" stroke-width="80"></path></g></svg>
+    <script src="./libs/p5.js"></script>
+    <script src="./libs/p5.svg.js"></script>
+    <script src="./libs//simplex-noise.js"></script>
+    <script src="./main.js"></script>
+</body>
+</html>
