@@ -1,17 +1,18 @@
 {
   "name": "generator",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "author": "omzeton",
+  "description": "SVG sign generator in p5.js",
+  "main": "/generator/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint \"**/*.js\""
   },
-  "keywords": [],
-  "author": "Adam Rolczyk",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "p5": "^1.4.0",
     "p5.js-svg": "^1.1.1",
     "simplex-noise": "^3.0.0"
