@@ -4,8 +4,8 @@ import { default as p5Class } from "p5";
 const p5 = new p5Class(() => {});
 
 // const colors = ["#256eff", "#46237a", "#3ddc97", "#f5d41d", "#ff495c"];
-// const colors = ["#0f0f0f", "#FEDB25"];
-const colors = ["#0f0f0f"];
+const colors = ["#0f0f0f", "#FEDB25"];
+// const colors = ["#0f0f0f"];
 
 const sw = 80;
 const dimensions = 380;
