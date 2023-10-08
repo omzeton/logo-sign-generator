@@ -7,24 +7,24 @@ const p5 = new p5Class(() => {});
 // const colors = ["#0f0f0f", "#FEDB25"];
 const colors = ["#0f0f0f"];
 
-const strokeWeight = 80;
-const dimensions = 500;
+const sw = 80;
+const dimensions = 380;
 const r = 100;
 
 p5.setup = () => {
   p5.createCanvas(dimensions, dimensions);
   p5.strokeCap(p5.PROJECT);
-  p5.strokeWeight(strokeWeight);
+  p5.strokeWeight(sw);
   for (let i = 0; i < 1; i++) {
     drawShapes();
   }
 };
 
 const drawShapes = () => {
-  for (let y = r; y < dimensions - r + 1; y += r) {
-    for (let x = r; x < dimensions + 1 - r; x += r) {
-      const xEdge = dimensions + 1 - r * 2 <= x;
-      const yEdge = dimensions + 1 - r * 2 <= y;
+  for (let y = sw / 2; y < dimensions; y += r) {
+    for (let x = sw / 2; x < dimensions; x += r) {
+      const xEdge = dimensions - r * 2 <= x;
+      const yEdge = dimensions - r * 2 <= y;
       const d = [
         [x, y - r, "⬆"],
         [x + r, y, "➡"],
@@ -75,7 +75,7 @@ const drawShapes = () => {
   }
 };
 
-p5.keyPrsed = () => {
+p5.keyPressed = () => {
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1;
   const day = dateObj.getUTCDate();
@@ -85,7 +85,7 @@ p5.keyPrsed = () => {
   const seconds = dateObj.getSeconds();
   const date = `${year}-${month}-${day}_${hours}:${minutes}:${seconds}`;
 
-  if (p5.keyCode === 80) {
+  if (p5.keyCode === 83) {
     p5.save(`${date}.png`);
   }
 };

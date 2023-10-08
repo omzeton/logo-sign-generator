@@ -11,5 +11,11 @@ canvas {
   border-radius: 30px;
   overflow: hidden;
   border: 1px solid #000;
+  padding: 60px;
   box-shadow: 0px 0px 33px -8px rgba(0, 0, 0, 0.5);
+}
+.instructions {
+  font-family: Verdana, sans-serif;
+  position: absolute;
+  bottom: 0;
 }
