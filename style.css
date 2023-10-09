@@ -6,6 +6,8 @@ body {
   display: grid;
   place-items: center;
   background: #f0f0f0;
+  border: 12px solid #000;
+  box-sizing: border-box;
 }
 canvas {
   overflow: hidden;
@@ -16,5 +18,5 @@ canvas {
 .instructions {
   font-family: Verdana, sans-serif;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
 }
