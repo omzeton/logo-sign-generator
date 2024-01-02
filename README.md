@@ -1,4 +1,6 @@
-# Square Logo Generator
+![alt text](https://github.com/omzeton/logo-sign-generator/blob/master/svgs/readme-example.png?raw=true)
+
+# Square Sign Generator
 
 Run
 ```
@@ -20,5 +22,3 @@ to preview the optimized built version.
 - Press the "Change color" button to toggle through different color palettes.
 - Use left arrow key to go back one step in history.
 - Use right arrow key to return one step in history.
-
-![alt text](https://github.com/omzeton/logo-sign-generator/blob/master/svgs/readme-example.png?raw=true)
