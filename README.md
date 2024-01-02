@@ -15,10 +15,10 @@ npm run preview
 ```
 to preview the optimized built version.
 
-Every refresh will produce a different shape.
-
-To save the output in PNG format press `s` on your keyboard.
-
-Feel free to experiemnt with different colors by changing the the hex values inside `colors` array inside `main.js` file.
+- Press the "Regenerate" button to create a new sign.
+- Press the "Save picture" button to save the sign in PNG format.
+- Press the "Change color" button to toggle through different color palettes.
+- Use left arrow key to go back one step in history.
+- Use right arrow key to return one step in history.
 
 ![alt text](https://github.com/omzeton/logo-sign-generator/blob/master/svgs/readme-example.png?raw=true)
