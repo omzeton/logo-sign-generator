@@ -1,5 +1,7 @@
-import "./style.css";
 import { default as p5Class } from "p5";
+import "./style.css";
+
+import { exampleSignArr } from "./exampleSign";
 
 const p5 = new p5Class(() => {});
 
@@ -10,9 +12,13 @@ const colors = ["#0f0f0f"];
 const regenerateBtn = document.getElementById("regenerate-button");
 const saveBtn = document.getElementById("save-button");
 
+const _IS_RANDOM = true;
+
 const sw = 80;
 const dimensions = 380;
 const r = 100;
+
+let lineCoords = [];
 
 p5.setup = () => {
   p5.createCanvas(dimensions, dimensions);
@@ -30,13 +36,18 @@ p5.setup = () => {
 };
 
 const generateShape = () => {
+  lineCoords = [];
   p5.background("#fff");
-  for (let i = 0; i < 1; i++) {
-    drawShapes();
+  if (_IS_RANDOM) {
+    drawRandomShape();
+    console.log(JSON.stringify(lineCoords));
+  } else {
+    drawShapeFromCoords();
+    console.log(JSON.stringify(exampleSignArr));
   }
 };
 
-const drawShapes = () => {
+const drawRandomShape = () => {
   for (let y = sw / 2; y < dimensions; y += r) {
     for (let x = sw / 2; x < dimensions; x += r) {
       const xEdge = dimensions - r * 2 <= x;
@@ -86,8 +97,21 @@ const drawShapes = () => {
       if (randDir[0] !== x || randDir[1] !== y) {
         p5.stroke(colors[Math.floor(Math.random() * colors.length)]);
         p5.line(x, y, randDir[0], randDir[1]);
+        lineCoords.push({
+          x1: x,
+          y1: y,
+          x2: randDir[0],
+          y2: randDir[1],
+        });
       }
     }
+  }
+};
+
+const drawShapeFromCoords = () => {
+  for (const { x1, y1, x2, y2 } of exampleSignArr) {
+    p5.stroke(colors[Math.floor(Math.random() * colors.length)]);
+    p5.line(x1, y1, x2, y2);
   }
 };
 
