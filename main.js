@@ -1,8 +1,6 @@
 import { default as p5Class } from "p5";
 import "./style.css";
 
-import { exampleSignArr } from "./exampleSign";
-
 const p5 = new p5Class(() => {});
 
 const colorPalettes = [
@@ -20,8 +18,6 @@ let colorPaletteIndex = 0;
 const regenerateBtn = document.getElementById("regenerate-button");
 const saveBtn = document.getElementById("save-button");
 const paletteBtn = document.getElementById("palette-button");
-
-const _IS_RANDOM = true;
 
 const r = 100;
 const sw = 80;
@@ -52,11 +48,7 @@ p5.setup = () => {
 
 const generateShape = () => {
   lineCoords = [];
-  if (_IS_RANDOM) {
-    drawRandomShape();
-  } else {
-    drawShapeFromCoords(exampleSignArr);
-  }
+  drawRandomShape();
   if (history.length) {
     history.length = historyIndex + 1;
   }
@@ -143,7 +135,7 @@ const changeColorPalette = () => {
   } else {
     colorPaletteIndex++;
   }
-  drawShapeFromCoords(lineCoords);
+  drawShapeFromCoords(history[historyIndex]);
 };
 
 const savePNG = () => {
