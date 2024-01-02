@@ -15,7 +15,6 @@ const colorPalettes = [
   ["#E5E059", "#BDD358"],
   ["#54494B", "#91C7B1"],
 ];
-
 let colorPaletteIndex = 0;
 
 const regenerateBtn = document.getElementById("regenerate-button");
@@ -29,6 +28,8 @@ const sw = 80;
 const dimensions = 380;
 
 let lineCoords = [];
+let history = [];
+let historyIndex = 0;
 
 p5.setup = () => {
   p5.createCanvas(dimensions, dimensions);
@@ -53,11 +54,14 @@ const generateShape = () => {
   lineCoords = [];
   if (_IS_RANDOM) {
     drawRandomShape();
-    console.log(JSON.stringify(lineCoords));
   } else {
     drawShapeFromCoords(exampleSignArr);
-    console.log(JSON.stringify(exampleSignArr));
   }
+  if (history.length) {
+    history.length = historyIndex + 1;
+  }
+  history.push(lineCoords);
+  historyIndex = history.length - 1;
 };
 
 const drawRandomShape = () => {
@@ -153,4 +157,31 @@ const savePNG = () => {
   const date = `${year}-${month}-${day}_${hours}:${minutes}:${seconds}`;
 
   p5.save(`${date}.png`);
+};
+
+p5.keyPressed = () => {
+  if (history.length > 0) {
+    if (p5.keyCode === 37) {
+      undo();
+    }
+    if (p5.keyCode === 39) {
+      redo();
+    }
+  }
+};
+
+const undo = () => {
+  if (historyIndex > 0) {
+    historyIndex--;
+    const previousShape = history[historyIndex];
+    drawShapeFromCoords(previousShape);
+  }
+};
+
+const redo = () => {
+  if (historyIndex < history.length - 1) {
+    historyIndex++;
+    const previousShape = history[historyIndex];
+    drawShapeFromCoords(previousShape);
+  }
 };
