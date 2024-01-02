@@ -5,18 +5,28 @@ import { exampleSignArr } from "./exampleSign";
 
 const p5 = new p5Class(() => {});
 
-// const colors = ["#256eff", "#46237a", "#3ddc97", "#f5d41d", "#ff495c"];
-// const colors = ["#0f0f0f", "#FEDB25"];
-const colors = ["#0f0f0f"];
+const colorPalettes = [
+  ["#0f0f0f"],
+  ["#AD2E24"],
+  ["#9BC995", "#5171A5"],
+  ["#242038", "#F7ECE1", "#A167A5"],
+  ["#0f0f0f", "#FEDB25"],
+  ["#191923", "#0E79B2"],
+  ["#E5E059", "#BDD358"],
+  ["#54494B", "#91C7B1"],
+];
+
+let colorPaletteIndex = 0;
 
 const regenerateBtn = document.getElementById("regenerate-button");
 const saveBtn = document.getElementById("save-button");
+const paletteBtn = document.getElementById("palette-button");
 
 const _IS_RANDOM = true;
 
+const r = 100;
 const sw = 80;
 const dimensions = 380;
-const r = 100;
 
 let lineCoords = [];
 
@@ -33,21 +43,26 @@ p5.setup = () => {
   saveBtn.addEventListener("click", () => {
     savePNG();
   });
+
+  paletteBtn.addEventListener("click", () => {
+    changeColorPalette();
+  });
 };
 
 const generateShape = () => {
   lineCoords = [];
-  p5.background("#fff");
   if (_IS_RANDOM) {
     drawRandomShape();
     console.log(JSON.stringify(lineCoords));
   } else {
-    drawShapeFromCoords();
+    drawShapeFromCoords(exampleSignArr);
     console.log(JSON.stringify(exampleSignArr));
   }
 };
 
 const drawRandomShape = () => {
+  const colors = colorPalettes[colorPaletteIndex];
+  p5.background("#fff");
   for (let y = sw / 2; y < dimensions; y += r) {
     for (let x = sw / 2; x < dimensions; x += r) {
       const xEdge = dimensions - r * 2 <= x;
@@ -108,11 +123,23 @@ const drawRandomShape = () => {
   }
 };
 
-const drawShapeFromCoords = () => {
-  for (const { x1, y1, x2, y2 } of exampleSignArr) {
+const drawShapeFromCoords = (linesArr) => {
+  const colors = colorPalettes[colorPaletteIndex];
+  p5.background("#fff");
+  for (const { x1, y1, x2, y2 } of linesArr) {
     p5.stroke(colors[Math.floor(Math.random() * colors.length)]);
     p5.line(x1, y1, x2, y2);
   }
+};
+
+const changeColorPalette = () => {
+  const colorsToChooseFrom = colorPalettes.length;
+  if (colorPaletteIndex === colorsToChooseFrom - 1) {
+    colorPaletteIndex = 0;
+  } else {
+    colorPaletteIndex++;
+  }
+  drawShapeFromCoords(lineCoords);
 };
 
 const savePNG = () => {
