@@ -7,6 +7,9 @@ const p5 = new p5Class(() => {});
 // const colors = ["#0f0f0f", "#FEDB25"];
 const colors = ["#0f0f0f"];
 
+const regenerateBtn = document.getElementById("regenerate-button");
+const saveBtn = document.getElementById("save-button");
+
 const sw = 80;
 const dimensions = 380;
 const r = 100;
@@ -15,6 +18,19 @@ p5.setup = () => {
   p5.createCanvas(dimensions, dimensions);
   p5.strokeCap(p5.PROJECT);
   p5.strokeWeight(sw);
+  generateShape();
+
+  regenerateBtn.addEventListener("click", () => {
+    generateShape();
+  });
+
+  saveBtn.addEventListener("click", () => {
+    savePNG();
+  });
+};
+
+const generateShape = () => {
+  p5.background("#fff");
   for (let i = 0; i < 1; i++) {
     drawShapes();
   }
@@ -75,7 +91,7 @@ const drawShapes = () => {
   }
 };
 
-p5.keyPressed = () => {
+const savePNG = () => {
   const dateObj = new Date();
   const month = dateObj.getUTCMonth() + 1;
   const day = dateObj.getUTCDate();
@@ -85,7 +101,5 @@ p5.keyPressed = () => {
   const seconds = dateObj.getSeconds();
   const date = `${year}-${month}-${day}_${hours}:${minutes}:${seconds}`;
 
-  if (p5.keyCode === 83) {
-    p5.save(`${date}.png`);
-  }
+  p5.save(`${date}.png`);
 };
