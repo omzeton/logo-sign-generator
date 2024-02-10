@@ -58,7 +58,7 @@ const generateShape = () => {
 
 const drawRandomShape = () => {
   const colors = colorPalettes[colorPaletteIndex];
-  p5.background("#fff");
+  p5.clear();
   for (let y = sw / 2; y < dimensions; y += r) {
     for (let x = sw / 2; x < dimensions; x += r) {
       const xEdge = dimensions - r * 2 <= x;
@@ -121,7 +121,7 @@ const drawRandomShape = () => {
 
 const drawShapeFromCoords = (linesArr) => {
   const colors = colorPalettes[colorPaletteIndex];
-  p5.background("#fff");
+  p5.clear();
   for (const { x1, y1, x2, y2 } of linesArr) {
     p5.stroke(colors[Math.floor(Math.random() * colors.length)]);
     p5.line(x1, y1, x2, y2);
