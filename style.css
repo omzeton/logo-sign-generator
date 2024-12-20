@@ -41,3 +41,16 @@ button:hover {
   background-color: #000;
   color: #fff;
 }
+.github-link {
+  position: fixed;
+  font-size: 16px;
+  left: 30px;
+  bottom: 30px;
+  text-decoration: none;
+  color: #000;
+}
+.github-link img {
+  margin-right: 10px;
+  width: 10px;
+  height: auto;
+}
