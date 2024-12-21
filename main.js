@@ -18,10 +18,12 @@ let colorPaletteIndex = 0;
 const regenerateBtn = document.getElementById("regenerate-button");
 const saveBtn = document.getElementById("save-button");
 const paletteBtn = document.getElementById("palette-button");
+const resolutionSlider = document.getElementById("resolution-slider");
+const sizeSlider = document.getElementById("size-slider");
 
-const r = 100;
+let r = 100;
+let dimensions = 380;
 const sw = 80;
-const dimensions = 380;
 
 let lineCoords = [];
 let history = [];
@@ -43,6 +45,14 @@ p5.setup = () => {
 
   paletteBtn.addEventListener("click", () => {
     changeColorPalette();
+  });
+
+  resolutionSlider.addEventListener("change", (event) => {
+    changeResolution(event.target.value);
+  });
+
+  sizeSlider.addEventListener("change", (event) => {
+    resizeSign(event.target.value);
   });
 };
 
@@ -134,6 +144,23 @@ const changeColorPalette = () => {
     colorPaletteIndex = 0;
   } else {
     colorPaletteIndex++;
+  }
+  drawShapeFromCoords(history[historyIndex]);
+};
+
+const resizeSign = (value) => {
+  dimensions = value * 380;
+  drawShapeFromCoords(history[historyIndex]);
+};
+
+const changeResolution = (value) => {
+  const num = Number(value);
+  if (num === 3) {
+    r = 100;
+  } else if (num === 2) {
+    r = 50;
+  } else if (num === 1) {
+    r = 25;
   }
   drawShapeFromCoords(history[historyIndex]);
 };
