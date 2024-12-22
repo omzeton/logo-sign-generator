@@ -54,17 +54,17 @@ button:hover {
   width: 10px;
   height: auto;
 }
-.resolution-wrapper,
-.size-wrapper {
+.columns-wrapper,
+.density-wrapper {
   position: absolute;
   display: flex;
   flex-direction: column;
   transform: rotate(90deg);
 }
-.resolution-wrapper {
+.columns-wrapper {
   left: calc(50% + 250px);
 }
-.size-wrapper {
+.density-wrapper {
   flex-direction: column-reverse;
   right: calc(50% + 250px);
 }

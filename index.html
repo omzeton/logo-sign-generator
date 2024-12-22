@@ -9,32 +9,32 @@
   <body>
     <div class="button-container">
       <div class="button-wrapper">
-        <button id="regenerate-button">Regenerate</button>
+        <button id="generate-button">Generate</button>
         <button id="save-button">Save picture</button>
         <button id="palette-button">Change color</button>
       </div>
       <p>Press left arrow key to undo or right arrow key to redo.</p>
     </div>
-    <div class="resolution-wrapper">
-      <label for="resolution-slider">Resolution</label>
+    <div class="columns-wrapper">
+      <label for="columns-slider">Columns</label>
       <input
-        id="resolution-slider"
-        class="resolution-slider"
+        id="columns-slider"
+        class="columns-slider"
         type="range"
-        min="1"
-        max="3"
-        value="3"
+        min="4"
+        max="6"
+        value="5"
       />
     </div>
-    <div class="size-wrapper">
-      <label for="size-slider">Size</label>
+    <div class="density-wrapper">
+      <label for="density-slider">Density</label>
       <input
-        id="size-slider"
-        class="size-slider"
+        id="density-slider"
+        class="density-slider"
         type="range"
         min="1"
         max="10"
-        value="1"
+        value="7"
       />
     </div>
     <a class="github-link" href="https://github.com/omzeton/logo-sign-generator"
