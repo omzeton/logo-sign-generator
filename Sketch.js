@@ -10,6 +10,7 @@ class SketchHistory {
 
   pushToHistory(canvasState) {
     this.history.push(canvasState);
+    this.historyIndex = this.history.length - 1;
   }
 
   changeHistoryIndex(changeType) {
@@ -52,18 +53,27 @@ class SketchPalette {
     return this.palettes[this.index];
   }
 
+  getCurrentColorPaletteIndex() {
+    return this.index;
+  }
+
   getRandomColorFromCurrentColorPalette() {
     const currentColorPalette = this.getCurrentColorPalette();
     return currentColorPalette[Math.floor(Math.random() * currentColorPalette.length)];
+  }
+
+  getRandomColorFromPaletteAtIndex(index) {
+    const palette = this.palettes[index];
+    return palette[Math.floor(Math.random() * palette.length)];
   }
 }
 
 export class Sketch {
   dimensions = 400;
-  columns = 5;
-  density = 0.7;
-  gap = 0.28;
-  connectionsProbability = 0.5;
+  columns = 4;
+  density = 1;
+  gap = 0.2;
+  connectionsProbability = 0.3;
 
   constructor() {
     this.eventButtons = {
@@ -72,6 +82,8 @@ export class Sketch {
       changePalette: document.getElementById("palette-button"),
       changeColumns: document.getElementById("columns-slider"),
       changeDensity: document.getElementById("density-slider"),
+      changeConnections: document.getElementById("connections-slider"),
+      changeGap: document.getElementById("gap-slider"),
     };
     this.p5 = new p5Class(() => {});
     this.History = new SketchHistory();
@@ -107,6 +119,16 @@ export class Sketch {
     this.eventButtons.changeDensity.addEventListener("change", (event) => {
       const sliderValue = Number(event.target.value);
       this.changeSketchDensity(sliderValue);
+    });
+
+    this.eventButtons.changeConnections.addEventListener("change", (event) => {
+      const sliderValue = Number(event.target.value);
+      this.changeSketchConnectionsProbability(sliderValue);
+    });
+
+    this.eventButtons.changeGap.addEventListener("change", (event) => {
+      const sliderValue = Number(event.target.value);
+      this.changeSketchGap(sliderValue);
     });
 
     this.p5.keyPressed = () => {
@@ -187,21 +209,37 @@ export class Sketch {
               break;
           }
           this.p5.rect(...rectCoords);
-          shape.connectionMatrix.push(...rectCoords);
+          shape.connectionMatrix.push([...rectCoords]);
         }
       }
     }
 
-    this.History.pushToHistory([
-      {
-        ...shape,
-        density: this.density,
-        columns: this.columns,
-      },
-    ]);
+    this.History.pushToHistory({
+      boxMatrix: shape.boxMatrix,
+      connectionMatrix: shape.connectionMatrix,
+      columns: this.columns,
+    });
   }
 
-  generateShapeFromHistory() {}
+  generateShapeFromHistory() {
+    const shape = this.History.getCurrentPlaceInHistory();
+
+    this.p5.clear();
+
+    const totalCells = shape.columns + (shape.columns - 1) * this.gap;
+    const squareSize = this.dimensions / totalCells;
+
+    this.p5.push();
+    for (const { x, y } of shape.boxMatrix) {
+      this.p5.fill(this.Palette.getRandomColorFromCurrentColorPalette());
+      this.p5.rect(x, y, squareSize, squareSize);
+    }
+    for (const connection of shape.connectionMatrix) {
+      this.p5.fill(this.Palette.getRandomColorFromCurrentColorPalette());
+      this.p5.rect(...connection);
+    }
+    this.p5.pop();
+  }
 
   getRandomBinary(value) {
     const probabiliy = value || this.density;
@@ -236,5 +274,15 @@ export class Sketch {
   changeSketchDensity(value) {
     this.density = value / 10;
     this.generateNewRandomShape();
+  }
+
+  changeSketchConnectionsProbability(value) {
+    this.connectionsProbability = value / 10;
+    this.generateNewRandomShape();
+  }
+
+  changeSketchGap(value) {
+    this.gap = value / 10;
+    this.generateShapeFromHistory();
   }
 }

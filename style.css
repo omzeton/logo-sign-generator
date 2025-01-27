@@ -54,17 +54,22 @@ button:hover {
   width: 10px;
   height: auto;
 }
-.columns-wrapper,
-.density-wrapper {
+
+.sliders-wrapper {
   position: absolute;
+  top: 30px;
+  left: 50%;
+  padding: 30px;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+}
+.input-container {
   display: flex;
   flex-direction: column;
-  transform: rotate(90deg);
 }
-.columns-wrapper {
-  left: calc(50% + 250px);
-}
-.density-wrapper {
-  flex-direction: column-reverse;
-  right: calc(50% + 250px);
+.input-container label {
+  font-weight: bold;
 }
